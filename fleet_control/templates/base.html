@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block title %}Meus Livros{% endblock %}
+{% block body %}
+    {% if books %}
+        <p>Estes são alguns dos livros da minha coleção:</p>
+        <ul>
+        {% for book in books %}
+            <li><a href="{{ book.id }}">{{ book }}</a></li>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <p>Eu não tenho uma coleção de livros!</p>
+    {% endif %}
+{% endblock %}

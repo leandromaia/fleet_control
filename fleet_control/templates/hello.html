@@ -1,0 +1,8 @@
+<h1> Página Inicial Curso: {{ course_name }} </h1>
+{% for aluno in alunos_list %}
+    {%if aluno.name == 'Maria' %}
+        <li> {{ aluno.name | upper }} </li>
+    {% else %}
+        <li> {{ aluno.name }} </li>
+    {% endif %}
+{% endfor %}
