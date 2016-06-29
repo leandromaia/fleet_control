@@ -1,14 +1,25 @@
-{% extends "base.html" %}
-{% block title %}Meus Livros{% endblock %}
-{% block body %}
-    {% if books %}
-        <p>Estes são alguns dos livros da minha coleção:</p>
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <link rel="stylesheet" href="style.css" />
+    <title>{% block title %}Controle de Frota{% endblock %}</title>
+</head>
+
+<body>
+    <div id="sidebar">
+        {% block sidebar %}
         <ul>
-        {% for book in books %}
-            <li><a href="{{ book.id }}">{{ book }}</a></li>
-        {% endfor %}
+            <li><a href="/">Home</a></li>
+            <li><a href="/using/">Uso de Veículo</a></li>
         </ul>
-    {% else %}
-        <p>Eu não tenho uma coleção de livros!</p>
-    {% endif %}
-{% endblock %}
+        {% endblock %}
+    </div>
+    <div id="content">
+        {% block content %}{% endblock %}
+    </div>
+</body>
+</html>
+
+{% block content %}
+...
+{% endblock content %}

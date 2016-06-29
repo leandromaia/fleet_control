@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+{% for entry in vehicle_entries %}
+    <h2>{{ entry.name }}</h2>
+    <p>{{ entry.plate }}</p>
+{% endfor %}
+{% endblock %}

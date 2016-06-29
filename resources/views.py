@@ -7,7 +7,7 @@ def index(request):
         'course_name': 'Python e Django na Pratica',
         'alunos_list':[
             {
-                'name': 'João'
+                'name': 'José34'
             },
             {
                 'name': 'Maria'
