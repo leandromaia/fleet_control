@@ -1,9 +1,15 @@
 {% load resources_extras %}
+{% load vehicle_tags %}
 <h1> Página Inicial Curso: {{ course_name }} </h1>
 {% for aluno in alunos_list %}
     {%if aluno.name == 'Maria' %}
         <li> {{ aluno.name | upper }} </li>
     {% else %}
-        <li> {{ aluno.name | replace:'3' }} </li>
+        <li> {{ aluno.name | replace:"J" }} </li>
     {% endif %}
+{% endfor %}
+
+{% get_vehicles 3 as vehicle_entries%}
+{% for item in vehicle_entries %}
+    <p>{{ item }}</p>
 {% endfor %}
