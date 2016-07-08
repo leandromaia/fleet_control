@@ -1,5 +1,8 @@
+from django.views.generic import ListView
 from django.http import HttpResponse
 from django.shortcuts import render
+
+from .models import Vehicle
 
 
 def index(request):
@@ -19,3 +22,9 @@ def index(request):
     }
 
     return render(request, "hello.html", variables)
+
+class VehicleListView(ListView):
+    model = Vehicle
+    template_name = 'list_vehicle.html'
+    queryset = Vehicle.objects.order_by('name')
+    context_object_name = 'vehicle_list'
