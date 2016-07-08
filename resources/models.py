@@ -1,5 +1,10 @@
 from django.db import models
+from django.conf import settings
 
+
+class Manager(models.Model):
+    user = models.OneToOneField(settings.AUTH_USER_MODEL, primary_key=True)
+    name = models.CharField(max_length=30)
 
 class Vehicle(models.Model):
     name = models.CharField(max_length=30)
