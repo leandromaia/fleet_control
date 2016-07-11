@@ -19,6 +19,8 @@ class Vehicle(models.Model):
     is_active = models.BooleanField(default=True)
     usecontrols = models.ManyToManyField('Driver', through='UseControl')
 
+    def get_absolute_url(self):
+        return reverse('VehicleListView')
 
 class Driver(models.Model):
     name = models.CharField(max_length=128)
