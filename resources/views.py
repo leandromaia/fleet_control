@@ -1,9 +1,21 @@
 from django.views.generic.base import TemplateView
-
+from django.views.generic.base import RedirectView
 from .models import Vehicle
 
-class HomePageView(TemplateView):
 
+
+class VehicleRedirectView(RedirectView):
+    permanent = False
+    query_string = True
+    pattern_name = 'vehicle_detail'
+
+    def get_redirect_url(self, *args, **kwargs):
+        vehicle = get_object_or_404(Vehicle, pk=kwargs['pk'])
+        vehicle.update_counter()
+        return super(VehicleRedirectView, self).get_redirect_url(*args, **kwargs)
+
+
+class HomePageView(TemplateView):
     template_name = "home.html"
 
     def get_context_data(self, **kwargs):

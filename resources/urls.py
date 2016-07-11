@@ -1,11 +1,11 @@
 from django.conf.urls import url
 
 from . import views
-from .views import VehicleListView, VehicleDetailView
+from .views import VehicleDetailView, VehicleRedirectView
 
 urlpatterns = [
-    url(r'^list_vehicle/', VehicleListView.as_view()),
-    url(r'^vehicle_view/(?P<pk>\d+)$', VehicleDetailView.as_view(), \
+    url(r'^counter/(?P<pk>\d+)/$', VehicleRedirectView.as_view(), \
+                                                name='vehicle_counter'),
+    url(r'^vehicle_detail/(?P<pk>\d+)$', VehicleDetailView.as_view(), \
                                                 name='vehicle_detail'),
-    url(r'^$', views.index, name='index'),
 ]
