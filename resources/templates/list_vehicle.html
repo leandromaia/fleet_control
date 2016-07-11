@@ -1,11 +1,16 @@
-<ul>
-    <h2>Lista de Veículos </h2>
-    {% for list_vehicle in vehicle_list %}
-        <li>
-            <p>{{ list_vehicle.name }}</p>
-        </li>
-    {% endfor %}
-</ul>
+<h2>Lista de Veículos </h2>
+<table>
+    <thead>
+        <tr><th>Nome</th></tr>
+    </thead>
+    <tbody>
+        {% for vehicle in vehicle_list %}
+        <tr>
+            <td>{{ vehicle.name }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
 {% if is_paginated %}
 <div class="paginacao">
     <span class="paginacao-links">
