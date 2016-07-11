@@ -1,6 +1,30 @@
-from django.views.generic import ListView
+from django.views.generic.base import TemplateView
 
 from .models import Vehicle
+
+class HomePageView(TemplateView):
+
+    template_name = "home.html"
+
+    def get_context_data(self, **kwargs):
+        context = super(HomePageView, self).get_context_data(**kwargs)
+        context['available_vehicles'] = Vehicle.objects.all()[:5]
+        return context
+
+
+
+
+
+
+
+from django.views.generic import ListView, DetailView
+
+from .models import Vehicle
+
+
+class VehicleDetailView(DetailView):
+    model = Vehicle
+    template_name = 'vehicle_detail.html'
 
 
 class VehicleListView(ListView):
