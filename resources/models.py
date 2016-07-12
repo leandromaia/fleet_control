@@ -1,5 +1,6 @@
 from django.db import models
 from django.conf import settings
+from django.core.urlresolvers import reverse
 
 
 class ManagerControl(models.Model):
@@ -20,7 +21,7 @@ class Vehicle(models.Model):
     usecontrols = models.ManyToManyField('Driver', through='UseControl')
 
     def get_absolute_url(self):
-        return reverse('VehicleListView')
+        return reverse('vehicle_list')
 
 class Driver(models.Model):
     name = models.CharField(max_length=128)
