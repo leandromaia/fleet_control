@@ -1,19 +1,24 @@
-from django.test import TestCase
-
 from datetime import date
-from .models import Vehicle
+from django.test import TestCase
+from .models import Vehicle, ManagerControl
+
+class ManagerControlModelTest(TestCase):
+    fixtures = ['manager_fixture']
+
+    def test_manager_control_relations(self):
+        man_ctrl = ManagerControl.objects.all().first()
+        self.assertEqual(man_ctrl.user.id, 1)
+        self.assertEqual(man_ctrl.user.username, 'joaop')
+
 
 class VehicleViewTests(TestCase):
-    def test_vehicle_list(self):
-        response = self.client.get('/resources/vehicle_list/')
-        self.assertEqual(response.status_code, 200)
 
     def test_must_create_vehicle(self):
         data = {
             "name": "Fiat Palio",
             "description": "Modelo popular, cor branca",
             "license_plate": "GMF5689",
-            "manufacture_year": '2016-10-03'
+            "manufacture_year": '2008-01-01'
         }
         response = self.client.post('/resources/vehicle/add/', data)
         #Check status code for redirect
@@ -21,6 +26,10 @@ class VehicleViewTests(TestCase):
         veh_saved = Vehicle.objects.all().first()
         self.assertEqual(veh_saved.id, 1)
         self.assertEqual(veh_saved.name, 'Fiat Palio')
+
+    def test_vehicle_list(self):
+        response = self.client.get('/resources/vehicle_list/')
+        self.assertEqual(response.status_code, 200)
 
 
 class VehicleTest(TestCase):
