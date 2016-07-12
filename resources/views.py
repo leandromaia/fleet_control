@@ -8,7 +8,7 @@ from .models import Vehicle
 class VehicleCreate(CreateView):
     model = Vehicle
     template_name = 'vehicle_form.html'
-    fields = ['name',]
+    fields = ['name', 'description', 'manufacture_year', 'license_plate']
 
 class VehicleUpdate(UpdateView):
     model = Vehicle
