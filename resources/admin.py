@@ -1,3 +1,4 @@
+from datetime import date
 from django.contrib import admin
 from .models import ManagerControl, Manufacturer, \
                             Vehicle, Driver, UseControl
@@ -12,10 +13,14 @@ class ManufacturerAdmin(admin.ModelAdmin):
 
 @admin.register(Vehicle)
 class VehicleAdmin(admin.ModelAdmin):
-    list_display = ('name', 'license_plate','manufacture_year', 'is_active')
+    list_display = ('name', 'license_plate','year_format', 'is_active')
     list_display_links = ('name', 'license_plate')
     list_per_page = 2
-    ordering = ('name', )
+    search_fields = ('name', 'description')
+    list_filter = ('is_active', )
+
+    def year_format(self, instance):
+        return date.strftime(instance.manufacture_year, "%Y")
 
 @admin.register(Driver)
 class DriverAdmin(admin.ModelAdmin):
