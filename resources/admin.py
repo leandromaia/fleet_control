@@ -11,8 +11,14 @@ class ManagerControlAdmin(admin.ModelAdmin):
 class ManufacturerAdmin(admin.ModelAdmin):
     pass
 
+class UseControlInline(admin.TabularInline):
+    model = UseControl
+    extra = 1
+
 @admin.register(Vehicle)
 class VehicleAdmin(admin.ModelAdmin):
+    inlines = (UseControlInline,)
+    fields = (('name', 'license_plate'),'manufacture_year')
     list_display = ('name', 'license_plate','year_format', 'is_active')
     list_display_links = ('name', 'license_plate')
     list_per_page = 2
@@ -25,8 +31,4 @@ class VehicleAdmin(admin.ModelAdmin):
 
 @admin.register(Driver)
 class DriverAdmin(admin.ModelAdmin):
-    pass
-
-@admin.register(UseControl)
-class UseControlAdmin(admin.ModelAdmin):
-    pass
+     inlines = (UseControlInline,)
