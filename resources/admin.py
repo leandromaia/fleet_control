@@ -21,6 +21,7 @@ class VehicleAdmin(admin.ModelAdmin):
 
     def year_format(self, instance):
         return date.strftime(instance.manufacture_year, "%Y")
+    year_format.short_description = 'Ano de Fabricação'
 
 @admin.register(Driver)
 class DriverAdmin(admin.ModelAdmin):
