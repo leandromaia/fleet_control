@@ -5,6 +5,7 @@ from django.views.generic import ListView, DetailView
 from django.core.urlresolvers import reverse_lazy
 from .models import Vehicle
 
+
 class VehicleCreate(CreateView):
     model = Vehicle
     template_name = 'vehicle_form.html'

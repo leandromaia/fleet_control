@@ -13,10 +13,11 @@ class Manufacturer(models.Model):
 
 
 class Vehicle(models.Model):
-    name = models.CharField(max_length=30)
-    description = models.TextField(null=True, blank=True)
-    license_plate = models.CharField(max_length=7)
-    manufacture_year = models.DateField()
+
+    name = models.CharField('Nome', max_length=30)
+    description = models.TextField('Descrição', null=True, blank=True)
+    license_plate = models.CharField('Placa', max_length=7)
+    manufacture_year = models.DateField('Ano Fabricação')
     is_active = models.BooleanField(default=True)
     usecontrols = models.ManyToManyField('Driver', through='UseControl')
 
