@@ -13,13 +13,13 @@ class Manufacturer(models.Model):
 
 
 class Vehicle(models.Model):
-
     name = models.CharField('Nome', max_length=30)
     description = models.TextField('Descrição', null=True, blank=True)
     license_plate = models.CharField('Placa', max_length=7)
     manufacture_year = models.DateField('Ano Fabricação')
     is_active = models.BooleanField(default=True)
     usecontrols = models.ManyToManyField('Driver', through='UseControl')
+    manufacturer = models.ForeignKey('Manufacturer')
 
     def get_absolute_url(self):
         return reverse('vehicle_list')
@@ -29,7 +29,7 @@ class Driver(models.Model):
 
 
 class UseControl(models.Model):
-    driver = models.ForeignKey(Driver)
-    vehicle = models.ForeignKey(Vehicle)
+    driver = models.ForeignKey('Driver')
+    vehicle = models.ForeignKey('Vehicle')
     date_started = models.DateTimeField(auto_now_add=True)
     date_ended = models.DateTimeField(blank=True, null=True)

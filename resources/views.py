@@ -1,10 +1,44 @@
+from datetime import date
+
 from django.views.generic.base import RedirectView, TemplateView
 from django.views.generic.edit import CreateView, \
                                 UpdateView, DeleteView
 from django.views.generic import ListView, DetailView
 from django.core.urlresolvers import reverse_lazy
-from .models import Vehicle
+from django.http import HttpResponse
+from django.shortcuts import render
 
+from .models import Vehicle, Manufacturer, Driver, UseControl
+
+def usecontrol_add(request):
+    manufacturer = Manufacturer(name='Fiat')
+    manufacturer.save()
+
+    date_manufacture = date(2010, 1, 1)
+    v1 = Vehicle(
+            name='Uno',
+            license_plate='HGM4567',
+            manufacture_year=date_manufacture,
+            manufacturer=manufacturer)
+    v1.save()
+
+    driver = Driver(name='Leandro Maia')
+    driver.save()
+
+    usecontrol = UseControl(driver=driver, vehicle=v1)
+    usecontrol.save()
+    return HttpResponse('Modelos criados com sucesso')
+
+def usecontrol_list(request):
+    #Busca o primeiro registro de UseControl
+    usecontrol = UseControl.objects.all().first()
+    data = {
+        'vehicle': usecontrol.vehicle.name,
+        'driver': usecontrol.driver.name,
+        'date_started': usecontrol.date_started
+    }
+    import pdb; pdb.set_trace()
+    return render(request, 'usecontrol_list.html', data)
 
 class VehicleCreate(CreateView):
     model = Vehicle

@@ -15,4 +15,7 @@ urlpatterns = [
                                                 name='vehicle_detail'),
     url(r'^vehicle_list/$', VehicleListView.as_view(), \
                                                 name='vehicle_list'),
+
+    url(r'usecontrol/add/$', views.usecontrol_add, name='usecontrol_add'),
+    url(r'usecontrol/list/$', views.usecontrol_list, name='usecontrol_list'),
 ]
